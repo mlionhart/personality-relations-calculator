@@ -1,13 +1,13 @@
-$(document).ready(function(){    
+$(document).ready(function () {
     form1 = $('#form');
     form2 = $('#form2');
-    form2.hide();
+    // form2.hide();
 
-    // action on toggle button click (button that says 'calculate by type')
+    // // action on toggle button click (button that says 'calculate by type')
     $('#toggle').on('click', function () {
         form1.hide();
         form2.css('display', 'block');
-        $('label').css('width', '186px');        
+        $('label').css('width', '186px');
     })
 
     // action on toggle button click (button that says 'calculate by relation')
@@ -15,10 +15,10 @@ $(document).ready(function(){
         form2.hide();
         form1.show();
         $('label').css('width', '150px');
-    })    
-    
+    })
+
     // action on button click  
-    $('#button').on('click', function(){ 
+    $('#button').on('click', function () {
         // get value selected in type field 
         type = $('#type').val();
         type2 = $('#type2').val();
@@ -37,21 +37,31 @@ $(document).ready(function(){
 
         // call decodeFunctions() to return the type that matches the function order (of relation type)
         relationType = decodeFunctions(newOrder);
-
         relation = relation.charAt(0).toUpperCase() + relation.substring(1);
-        
-        info = "<h2>" + "Your " + "<span id='special'>" +  relation + "</span>" + " Type Relation is: " + "</h2>" + "<h1 class='specialH1'>" + relationType.toUpperCase() + "</h1>" ;
+
+        if (relation == 'Supervisor' || relation == 'Supervisee' || relation == 'Beneficiary' || relation == 'Benefactor') {
+            info = "<h3>" + "Your " + "<span id='special'>" + relation + "</span>" + " is: " + "</h3>" + "<br>" + "<h1 id='specialH1'>" + relationType.toUpperCase() + "</h1>";
+        } else {
+            info = "<h3>" + "Your " + "<span id='special'>" + relation + "</span>" + " Relation is: " + "</h3>" + "<br>" + "<h1 id='specialH1'>" + relationType.toUpperCase() + "</h1>";
+        }
+
+
         container.html(info);
         $('.specialH1').css('margin-bottom', '10px');
-        $('h2').css('margin-top', '10px');
-        $('h2').css('margin-bottom', '-15px');
+        $('h3').css('margin-top', '10px');
+        $('h3').css('margin-bottom', '-15px');
         $('#specialH1').css('margin-bottom', '10px');
-        $('#specialH1').css('font-size', '-=10px');
+        $('#specialH1').css('font-size', '48px');
+        // $('#specialH1').css('font-size', '-=10px');
         container.css('padding', '5px 0');
+
+        content = getContent(relation);
+
+        $('.container2').html(content);
     });
 
 
-    $('#button2').on('click', function() { 
+    $('#button2').on('click', function () {
         // get type one value
         type = $('#type1').val();
 
@@ -65,178 +75,240 @@ $(document).ready(function(){
         type2Order = getFunctions(type2);
         relation = findRelationByType(type1Order, type2Order);
         relation = relation.charAt(0).toUpperCase() + relation.substring(1);
-        
-        info = "<h2>" + "<span id='special2'>" + type2.toUpperCase() + "</span>" + " is Your: " + "</h2>" + "<h1 class='specialH1'>" + "<span id='special'>" +  relation + "</span>" + " relation" + "</h1>";
-        
+        if (relation == 'Supervisor' || relation == 'Supervisee' || relation == 'Beneficiary' || relation == 'Benefactor') {
+            info = "<h2>" + "<span id='special2'>" + type2.toUpperCase() + "</span>" + " is Your: " + "</h2>" + "<br>" + "<h1 class='specialH1'>" + "<span id='special'>" + relation + "</span>" + "</h1>";
+        } else {
+            info = "<h2>" + "<span id='special2'>" + type2.toUpperCase() + "</span>" + " is Your: " + "</h2>" + "<br>" + "<h1 class='specialH1'>" + "<span id='special'>" + relation + "</span>" + " relation" + "</h1>";
+        }
+
         container.html(info);
         $('.specialH1').css('margin-bottom', '10px');
-        $('.specialH1').css('font-size', '-=10px');
+        $('.specialH1').css('font-size', '36px');
+        $('#special2').css('font-weight', 'bold');
+        // $('.specialH1').css('font-size', '-=10px');
         container.css('padding', '5px 0');
         $('h2').css('margin-top', '10px');
         $('h2').css('margin-bottom', '-15px');
-    });    
+        $('h2').css('font-size', '-=10px');       
+        
+        content = getContent(relation);
+        $('.container2').html(content);
+    });
 
+
+    function getContent(relation) {
+        switch (relation) {
+            case 'Identity':
+                content = '<p>Identity relations have easy communication and get to know each other very quickly. However, they may compete over similar strengths</p>';
+                break;
+            case 'Activity':
+                content = '<p>Activity relations feel comfortable being themselves with each other. Relations can be over-stimulating and competitive. May require breaks from each other</p>';
+                break;
+            case 'Mirror':
+                content = '<p>Mirror relations often see eye-to-eye on things. Share many similar functions, and thus many similarities, but may feel the other focuses on less important matters</p>';
+                break;
+            case 'Kindred':
+                content = '<p>With kindred relations, interaction comes easily. You have similar goals in life, but due to your differing creative functions, you will often disagree on the methods of attaining such goals</p>';
+                break;
+            case 'Business':
+                content = '<p>Business relations are after different things in life, but use similar methods of achieving their goals. They can appear very similar, but usually have differing interests</p>';
+                break;
+            case 'Partial duality':
+                content = '<p>With partial duality relations, you both supply each other\'s main need (the inferior function). There is often a high level of attraction, but you can clash in values.</p>';
+                break;
+            case 'Mirage':
+                content = '<p>Mirage relations enjoy each other\'s company, but are never fully satisfied with each other. This relation can lead to stagnancy.</p>';
+                break;
+            case 'Superego':
+                content = '<p>Superego relations often find each other quite fascinating, mysterious and interesting. However, there exists a great difference in values and interests among these two, which can lead to lack of fulfillment in the relation.</p>';
+                break;
+            case 'Beneficiary':
+                content = '<p>Relations of benefit are often likened to an older/younger sibling relationship. The benefactor being the older sibling, and the beneficiary the younger sibling in the analogy</p>';
+                break;
+            case 'Benefactor':
+                content = '<p>Relations of benefit are often likened to an older/younger sibling relationship. The benefactor being the older sibling, and the beneficiary the younger sibling in the analogy</p>';
+                break;
+            case 'Supervisor':
+                content = '<p>Relations of supervision are often likened to a parent/child relationship. The supervisor being the parent, and the supervisee being the child in the analogy.</p>';
+                break;
+            case 'Supervisee':
+                content = '<p>Relations of supervision are often likened to a parent/child relationship. The supervisor being the parent, and the supervisee being the child in the analogy.</p>';
+                break;
+            case 'Quasi-identity':
+                content = '<p>Quasi-identical relations are externally similar, internally different. Although they often have similar interests and work in similar fields, they typically have very different priorities in life and may never agree on how things should be done.</p>';
+                break;
+            case 'Extinguishment':
+                content = '<p>Relations of extinguishment (aka contrary relations) have a very strong difference in values. This relation is one of confusion, misunderstanding and disagreement. They often see each other as unnecessarily contrary, when this is not the intention.</p>';
+                break;
+            case 'Conflicting':
+                content = '<p>Conflicting relations are seen as the least compatible relation. Both may find each other lacking in areas the other finds most important. Often find each other attractive at first - at least at a distance - but this often goes wrong once they get closer.</p>';
+                break;
+            case 'Duality':
+                content = '<p>Dual relations are seen by some as having the best possibly compatibility. However, this is debated. There is a balancing effect with this duo, and often a high level of attraction and intrigue, albeit some confusion.</p>';
+        } // end of switch
+        return content;
+    }
 
     // function for finding type relation
     function findRelation(baseOrder, relation) {
         newOrder = '';
-        
+
         switch (relation) {
             case 'supervisee':
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(12,14);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(12, 14);
                 break;
             case 'supervisor':
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(2,4);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(2, 4);
                 break;
             case 'benefactor':
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(4,6);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(4, 6);
                 break;
             case 'beneficiary':
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(10,12);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(10, 12);
                 break;
             case 'mirror':
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(12,14);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(12, 14);
                 break;
             case 'activity':
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(10,12);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(10, 12);
                 break;
             case 'duality':
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(8,10);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(8, 10);
                 break;
             case 'kindred':
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(14,16);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(14, 16);
                 break;
-            case 'partduality':
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(8,10);
+            case 'partial duality':
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(8, 10);
                 break;
             case 'extinguishment':
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(6,8);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(6, 8);
                 break;
             case 'superego':
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(0,2);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(0, 2);
                 break;
             case 'business':
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(0,2);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(0, 2);
                 break;
             case 'mirage':
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(6,8);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(6, 8);
                 break;
-            case 'quasi':
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(2,4);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(4,6);
+            case 'quasi-identity':
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(2, 4);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(4, 6);
                 break;
             case 'conflicting':
-                newOrder += baseOrder.slice(12,14);
-                newOrder += baseOrder.slice(14,16);
-                newOrder += baseOrder.slice(8,10);
-                newOrder += baseOrder.slice(10,12);
-                newOrder += baseOrder.slice(4,6);
-                newOrder += baseOrder.slice(6,8);
-                newOrder += baseOrder.slice(0,2);
-                newOrder += baseOrder.slice(2,4);
+                newOrder += baseOrder.slice(12, 14);
+                newOrder += baseOrder.slice(14, 16);
+                newOrder += baseOrder.slice(8, 10);
+                newOrder += baseOrder.slice(10, 12);
+                newOrder += baseOrder.slice(4, 6);
+                newOrder += baseOrder.slice(6, 8);
+                newOrder += baseOrder.slice(0, 2);
+                newOrder += baseOrder.slice(2, 4);
                 break;
             case 'identity':
                 newOrder = baseOrder;
                 break;
-            }
-            return newOrder;
+        }
+        return newOrder;
     }
 
     function findRelationByType(type1Order, type2Order) {
@@ -313,7 +385,7 @@ $(document).ready(function(){
     }
 
     // function for getting cognitive functions of the type
-    function getFunctions(type) {        
+    function getFunctions(type) {
         switch (type) {
             case 'intp':
                 functions = 'TiNeSiFeTeNiSeFi';
@@ -368,7 +440,7 @@ $(document).ready(function(){
     }
 
     // function for decoding cognitive functions into correct type again
-    function decodeFunctions(newOrder) {        
+    function decodeFunctions(newOrder) {
         if (newOrder == 'TiNeSiFeTeNiSeFi') {
             type = 'intp';
         }
@@ -416,7 +488,7 @@ $(document).ready(function(){
         }
         else {
             type = 'infp';
-        }        
+        }
         return type;
     }
 });

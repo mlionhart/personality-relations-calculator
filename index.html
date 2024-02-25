@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="socionics.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <div id="content">
+    <div class="container">
         <div id="header">
-            <h1>Mike's Socionics Type Relations Calculator</h1>
+            <h1>Mike's Type Relations Calculator</h1>
         </div>
         
         <div id="form">
-            <button id="toggle">Calculate by Type</button><br>
+            <button id="toggle" class="btn btn-block btn-secondary">Calculate by Type</button><br>
             <!-- <button id="bytype">Calculate by Type</button>
             <button id="byrelation">Calculate by Relation</button><br> -->
             <label for="type">Select Your Type:</label>
-            <select name="" id="type">
+            <select name="" id="type" class="custom-select mb-2">
                 <option value="entj">ENTJ</option>
                 <option value="entp">ENTP</option>
                 <option value="intj">INTJ</option>
@@ -38,7 +39,7 @@
             </select><br>    
 
             <label for="relation">Select Type Relation:</label>
-            <select name="" id="relation">Select relation:
+            <select name="" id="relation" class="custom-select">Select relation:
                 <option value="supervisor">Supervisor</option>
                 <option value="supervisee">Supervisee</option>
                 <option value="benefactor">Benefactor</option>
@@ -48,25 +49,25 @@
                 <option value="activity">Activity</option>
                 <option value="duality">Duality</option>
                 <option value="kindred">Kindred (Comparative)</option>
-                <option value="partduality">Partial Duality</option>
+                <option value="partial duality">Partial Duality</option>
                 <option value="extinguishment">Extinguishment (Contrary)</ption>
                 <option value="superego">Superego</option>
                 <option value="business">Business</option>
                 <option value="mirage">Mirage (Illusionary)</option>
-                <option value="quasi">Quasi-Identity</option>
+                <option value="quasi-identity">Quasi-Identity</option>
                 <option value="conflicting">Conflicting</option>
             </select><br>
 
-            <button id="button">Find Type Relation</button>
+            <button id="button" class="btn btn-block btn-primary mt-3">Find Type Relation</button>
         </div> <!-- end of form -->
 
         <div id="form2">
-            <button id="toggle2">Calculate by Relation</button><br>
+            <button id="toggle2" class="btn btn-block btn-secondary">Calculate by Relation</button><br>
 
             <!-- <button id="bytype">Calculate by Type</button>
             <button id="byrelation">Calculate by Relation</button><br> -->
             <label for="type1" class="wideLabel">Select Your Type:</label>
-            <select name="" id="type1">
+            <select name="" id="type1" class="custom-select mb-2">
                 <option value="entj">ENTJ</option>
                 <option value="entp">ENTP</option>
                 <option value="intj">INTJ</option>
@@ -86,7 +87,7 @@
             </select><br>    
 
             <label for="type2" class="wideLabel">Select Comparing Type:</label>
-            <select name="" id="type2">Select relation:
+            <select name="" id="type2" class="custom-select">Select relation:
                 <option value="entj">ENTJ</option>
                 <option value="entp">ENTP</option>
                 <option value="intj">INTJ</option>
@@ -105,14 +106,22 @@
                 <option value="isfp">ISFP</option>
             </select><br>
 
-            <button id="button2">Find Type Relation</button>
+            <button id="button2" class="btn btn-block btn-primary mt-3">Find Type Relation</button>
         </div> <!-- end of form2 -->
 
+        
         <div id="container"></div>
-    </div> <!-- end of content -->
+        <div class="container2"></div>
+    </div> <!-- end of container -->
 
+    <!-- Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
-
+    <!-- JavaScript -->
     <script src="socionics.js"></script>
 </body>
 </html>
