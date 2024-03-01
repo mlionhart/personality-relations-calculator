@@ -70,7 +70,7 @@ h1 {
     display: none;
 }
 
-p::before {
+p::before:not(footer p) {
     content: '- ';
 }
 
