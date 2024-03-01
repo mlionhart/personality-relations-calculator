@@ -54,10 +54,11 @@ h1 {
     background-color: lightgray;
     width: 660px;
     /* width: 100vw; */
-    height: 100vh;
+    height: auto;
+    min-height: 100vh;
     padding: 20px;
-    /* height: 700px; */
     border: 2px solid black;
+    box-sizing: border-box;
 }
 
 .container2 {
