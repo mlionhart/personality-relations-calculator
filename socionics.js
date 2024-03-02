@@ -107,13 +107,13 @@ $(document).ready(function () {
                 content = '<p>Activity relations feel comfortable being themselves with each other. Relations can be over-stimulating and competitive. May require breaks from each other</p>';
                 break;
             case 'Mirror':
-                content = '<p>Mirror relations often see eye-to-eye on things. Share many similar functions, and thus many similarities, but may feel the other focuses on less important matters</p>';
+                content = '<p>Mirror relations often see eye-to-eye on things, share many similar functions, and thus many similarities, but may feel the other focuses on less important matters</p>';
                 break;
             case 'Kindred':
-                content = '<p>With kindred relations, interaction comes easily. You have similar goals in life, but due to your differing creative functions, you will often disagree on the methods of attaining such goals</p>';
+                content = '<p>With kindred relations, interaction comes easily. You have similar goals in life (due sharing a dominant function), but due to your differing creative functions, you will often disagree on the methods of attaining such goals</p>';
                 break;
             case 'Business':
-                content = '<p>Business relations are after different things in life, but use similar methods of achieving their goals. They can appear very similar, but usually have differing interests</p>';
+                content = '<p>Business relations are after different things in life, but use similar methods of achieving their goals (i.e. the creative/auxiliary function). They can appear similar, but usually have differing interests</p>';
                 break;
             case 'Partial duality':
                 content = '<p>With partial duality relations, you both supply each other\'s main need (the inferior function). There is often a high level of attraction, but you can clash in values.</p>';
@@ -125,28 +125,28 @@ $(document).ready(function () {
                 content = '<p>Superego relations often find each other quite fascinating, mysterious and interesting. However, there exists a great difference in values and interests among these two, which can lead to lack of fulfillment in the relation.</p>';
                 break;
             case 'Beneficiary':
-                content = '<p>Relations of benefit are often likened to an older/younger sibling relationship. The benefactor being the older sibling, and the beneficiary the younger sibling in the analogy</p>';
+                content = '<p>Relations of benefit are often likened to an older/younger sibling relationship. The benefactor being the older sibling, and the beneficiary the younger sibling.</p>';
                 break;
             case 'Benefactor':
-                content = '<p>Relations of benefit are often likened to an older/younger sibling relationship. The benefactor being the older sibling, and the beneficiary the younger sibling in the analogy</p>';
+                content = '<p>Relations of benefit are often likened to an older/younger sibling relationship. The benefactor being the older sibling, and the beneficiary the younger sibling.</p>';
                 break;
             case 'Supervisor':
-                content = '<p>Relations of supervision are often likened to a parent/child relationship. The supervisor being the parent, and the supervisee being the child in the analogy.</p>';
+                content = '<p>Relations of supervision are often likened to a parent/child relationship. The supervisor being the parent, and the supervisee being the child.</p>';
                 break;
             case 'Supervisee':
-                content = '<p>Relations of supervision are often likened to a parent/child relationship. The supervisor being the parent, and the supervisee being the child in the analogy.</p>';
+                content = '<p>Relations of supervision are often likened to a parent/child relationship. The supervisor being the parent, and the supervisee being the child.</p>';
                 break;
             case 'Quasi-identity':
-                content = '<p>Quasi-identical relations are externally similar, internally different. Although they often have similar interests and work in similar fields, they typically have very different priorities in life and may never agree on how things should be done.</p>';
+                content = '<p>Quasi-identical relations are externally similar, but internally different. Although they often have similar interests and work in similar fields, they typically have different priorities in life and may never agree on how things should be done.</p>';
                 break;
             case 'Contrary':
-                content = '<p>Contrary relations (aka relations of extinguishment) have a very strong difference in values. This relation is one of confusion, misunderstanding and disagreement. They often see each other as unnecessarily contrary, when this is not the intention.</p>';
+                content = '<p>Contrary relations (aka relations of extinguishment) have a strong difference in values. This relation is one of confusion, misunderstanding and disagreement. They often see each other as unnecessarily contrary, when this is not the intention.</p>';
                 break;
             case 'Conflicting':
-                content = '<p>Conflicting relations are seen as the least compatible relation. Both may find each other lacking in areas the other finds most important. Often find each other attractive at first - at least at a distance - but this often goes wrong once they get closer.</p>';
+                content = '<p>Conflicting relations are seen as the least compatible relation. Both may find each other lacking in areas the other finds most important (i.e. both being dominant in the function the other lacks most). Often find each other attractive at first - at least at a distance - but this often goes wrong once they get closer.</p>';
                 break;
             case 'Duality':
-                content = '<p>Dual relations are seen by some as having the best possibly compatibility. However, this is debated. There is a balancing effect with this duo, and often a high level of attraction and intrigue, albeit some confusion.</p>';
+                content = '<p>Dual relations are seen by some as having the best possible compatibility. However, this is debated. There is a balancing effect with this duo, and often a high level of attraction and intrigue, albeit some confusion.</p>';
         } // end of switch
         return content;
     }
