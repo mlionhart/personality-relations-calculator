@@ -3,7 +3,7 @@ $(document).ready(function () {
     form2 = $('#form2');
     // form2.hide();
 
-    // // action on toggle button click (button that says 'calculate by type')
+    // action on toggle button click (button that says 'calculate by type')
     $('#toggle').on('click', function () {
         form1.hide();
         form2.css('display', 'block');
@@ -17,7 +17,7 @@ $(document).ready(function () {
         $('label').css('width', '150px');
     })
 
-    // action on button click  
+    // action on button click (find type relation button)
     $('#button').on('click', function () {
         // get value selected in type field 
         type = $('#type').val();
@@ -75,6 +75,7 @@ $(document).ready(function () {
         type2Order = getFunctions(type2);
         relation = findRelationByType(type1Order, type2Order);
         relation = relation.charAt(0).toUpperCase() + relation.substring(1);
+        console.log(relation);
         if (relation == 'Supervisor' || relation == 'Supervisee' || relation == 'Beneficiary' || relation == 'Benefactor') {
             info = "<h2>" + "<span id='special2'>" + type2.toUpperCase() + "</span>" + " is Your: " + "</h2>" + "<br>" + "<h1 class='specialH1'>" + "<span id='special'>" + relation + "</span>" + "</h1>";
         } else {
@@ -92,6 +93,7 @@ $(document).ready(function () {
         $('h2').css('font-size', '-=10px');       
         
         content = getContent(relation);
+        console.log(content);
         $('.container2').html(content);
     });
 
@@ -137,8 +139,8 @@ $(document).ready(function () {
             case 'Quasi-identity':
                 content = '<p>Quasi-identical relations are externally similar, internally different. Although they often have similar interests and work in similar fields, they typically have very different priorities in life and may never agree on how things should be done.</p>';
                 break;
-            case 'Extinguishment':
-                content = '<p>Relations of extinguishment (aka contrary relations) have a very strong difference in values. This relation is one of confusion, misunderstanding and disagreement. They often see each other as unnecessarily contrary, when this is not the intention.</p>';
+            case 'Contrary':
+                content = '<p>Contrary relations (aka relations of extinguishment) have a very strong difference in values. This relation is one of confusion, misunderstanding and disagreement. They often see each other as unnecessarily contrary, when this is not the intention.</p>';
                 break;
             case 'Conflicting':
                 content = '<p>Conflicting relations are seen as the least compatible relation. Both may find each other lacking in areas the other finds most important. Often find each other attractive at first - at least at a distance - but this often goes wrong once they get closer.</p>';
@@ -244,7 +246,7 @@ $(document).ready(function () {
                 newOrder += baseOrder.slice(4, 6);
                 newOrder += baseOrder.slice(8, 10);
                 break;
-            case 'extinguishment':
+            case 'contrary':
                 newOrder += baseOrder.slice(8, 10);
                 newOrder += baseOrder.slice(10, 12);
                 newOrder += baseOrder.slice(12, 14);
